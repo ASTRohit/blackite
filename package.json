@@ -1,5 +1,5 @@
 {
-  "name": "thirdeye-backend",
+  "name": "blackite",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ASTRohit/thirdeye.git"
+    "url": "git+https://github.com/ASTRohit/blackite.git"
   },
   "author": "Rohit Chaskar",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/ASTRohit/thirdeye/issues"
+    "url": "https://github.com/ASTRohit/blackite/issues"
   },
-  "homepage": "https://github.com/ASTRohit/thirdeye#readme",
+  "homepage": "https://github.com/ASTRohit/blackite#readme",
   "devDependencies": {
     "nodemon": "^1.18.4"
   },
