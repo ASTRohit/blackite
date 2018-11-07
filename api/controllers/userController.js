@@ -7,7 +7,7 @@ function insert(user) {
 
 	var insertQuery='INSERT INTO user_master(name, email, mobile, parent_id, is_admin, salt, password, status) '+
 	'VALUES (?, ?, ?, ?, ?, ?, ?, ?);';
-	console.log(insertQuery);
+	// console.log(insertQuery);
 	return db.query(insertQuery,[user.name, user.email, user.mobile, user.parent_id, user.is_admin, user.salt, user.password, user.status]);
 }
 
@@ -28,7 +28,7 @@ function fetch(username) {
 					 "WHERE um.email = ?";
 	}
 
-	console.log("Query : "+fetchQuery);
+	// console.log("Query : "+fetchQuery);
 	return db.query(fetchQuery, [username]);
 }
 
@@ -38,7 +38,7 @@ function fetchAll() {
 					 "FROM user_master AS um " + 
 					 "JOIN status_master AS sm ON um.status = sm.id;";	
 
-	console.log("Query : "+fetchQuery);
+	// console.log("Query : "+fetchQuery);
 	
 	return db.query(fetchQuery);
 }
@@ -49,7 +49,7 @@ function fetchList(ids) {
 					 "JOIN status_master AS sm ON um.status = sm.id " +
 					 "WHERE um.id IN " + ids;	
 
-	console.log("Query : "+fetchQuery);
+	// console.log("Query : "+fetchQuery);
 	
 	return db.query(fetchQuery);
 }
@@ -67,13 +67,13 @@ function update(user) {
 		args = [user.name, user.email, user.mobile, user.parent_id, user.is_admin, user.status, user.id];	
 	}
 
-	console.log("Query : "+updateQuery);
+	// console.log("Query : "+updateQuery);
 	return db.query(updateQuery,args);		
 }
 
 function remove(id) {
 	var removeQuery = "DELETE FROM user_master WHERE id = "+id;
-	console.log("Query : "+removeQuery);
+	// console.log("Query : "+removeQuery);
 	return db.query(removeQuery);
 }
 

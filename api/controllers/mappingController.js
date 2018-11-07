@@ -20,20 +20,20 @@ function isAuthorizeULM(ulm){
 function fetchULM(key, id) {
 	var fetchQuery = 'SELECT * FROM user_location_map WHERE '+ key +' = ' + id;
 	
-	console.log("Query : "+fetchQuery);
+	// console.log("Query : "+fetchQuery);
 	return db.query(fetchQuery);
 }
 
 function fetchULMForParents(location_id) {
 	var fetchQuery = 'SELECT * FROM user_location_map WHERE location_id=? AND is_authorize=false';
 	
-	console.log("Query : "+fetchQuery);
+	// console.log("Query : "+fetchQuery);
 	return db.query(fetchQuery,[location_id]);
 }
 
 function removeULM(ulm) {
 	var removeQuery = 'DELETE FROM user_location_map WHERE user_id=? AND location_id=? AND is_authorize=false;';
-	console.log("Query : "+removeQuery);
+	// console.log("Query : "+removeQuery);
 	return db.query(removeQuery,[ulm.user_id, ulm.location_id]);
 }
 
@@ -56,20 +56,20 @@ function isAuthorizeUSM(usm){
 function fetchUSM(key, id) {
 	var fetchQuery = 'SELECT * FROM user_stream_map  WHERE '+ key +' = ' + id;
 	
-	console.log("Query : "+fetchQuery);
+	// console.log("Query : "+fetchQuery);
 	return db.query(fetchQuery);
 }
 
 function fetchUSMForParents(stream_id) {
 	var fetchQuery = 'SELECT * FROM user_stream_map WHERE stream_id=? AND is_authorize=false';
 	
-	console.log("Query : "+fetchQuery);
+	// console.log("Query : "+fetchQuery);
 	return db.query(fetchQuery,[stream_id]);
 }
 
 function removeUSM(usm) {
 	var removeQuery = 'DELETE FROM user_stream_map WHERE user_id=? AND stream_id=? AND is_authorize=false;';
-	console.log("Query : "+removeQuery);
+	// console.log("Query : "+removeQuery);
 	return db.query(removeQuery,[usm.user_id, usm.stream_id]);
 }
 

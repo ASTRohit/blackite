@@ -4,15 +4,16 @@ var streamCtrl = require('./streamController');
 var mappingCtrl = require('./mappingController');
 
 var util = require('../utility/util');
+var file = require('../utility/file');
 
 async function registerUser(req, res, next) {
 	let request = req.body;
-	console.log('Insert User Request: '+JSON.stringify(request));
+	// console.log('Insert User Request: '+JSON.stringify(request));
 	
 	try {		
 		let user = request;		
 		let data = await userCtrl.insertUser(user);		
-		console.log('Return on Async/Await : '+JSON.stringify(data));	
+		// console.log('Return on Async/Await : '+JSON.stringify(data));	
 		user['id'] = parseInt(data['insertId']);
 		delete user['salt'];
 		delete user['password'];
@@ -23,19 +24,19 @@ async function registerUser(req, res, next) {
 			    message: ''
 			});
 	} catch(err) {
-		console.error(err);
+		// console.error(err);
 	}
 }
 
 async function addLocation(req, res, next) {
 	let request = req.body;
-	console.log('Insert Location Request: '+JSON.stringify(request));
+	// console.log('Insert Location Request: '+JSON.stringify(request));
 	
 	try {		
 		let location = request.location;
 
 		let data = await locationCtrl.insertLocation(location);		
-		console.log('Return on Async/Await : '+JSON.stringify(data));	
+		// console.log('Return on Async/Await : '+JSON.stringify(data));	
 		location['id'] = parseInt(data['insertId']);
 
 		let ulm = {
@@ -55,20 +56,20 @@ async function addLocation(req, res, next) {
 			    message: ''
 			});
 	} catch(err) {
-		console.error(err);
+		// console.error(err);
 	}
 }
 
 async function addStream(req, res, next) {
 	let request = req.body;
-	console.log('Insert Stream Request: '+JSON.stringify(request));
+	// console.log('Insert Stream Request: '+JSON.stringify(request));
 	
 	try {		
 		let userId = request.user_id;
 		let stream = request.stream;
 
 		let data = await streamCtrl.insertStream(stream);		
-		console.log('Return on Async/Await : '+JSON.stringify(data));	
+		// console.log('Return on Async/Await : '+JSON.stringify(data));	
 		stream['id'] = parseInt(data['insertId']);
 
 		let usm = {
@@ -88,13 +89,13 @@ async function addStream(req, res, next) {
 			    message: ''
 			});
 	} catch(err) {
-		console.error(err);
+		// console.error(err);
 	}
 }
 
 async function mapLocation(req, res, next) {
 	let request = req.body;
-	console.log('Location Mapping Request: '+JSON.stringify(request));
+	// console.log('Location Mapping Request: '+JSON.stringify(request));
 	
 	try {
 		var locationData = await locationCtrl.isAuthLocation(request['location_id']);
@@ -122,13 +123,13 @@ async function mapLocation(req, res, next) {
 			    message: 'Mapping success'
 			});
 	} catch(err) {
-		console.error(err);
+		// console.error(err);
 	}
 }
 
 async function mapStream(req, res, next) {
 	let request = req.body;
-	console.log('Stram Mapping Request: '+JSON.stringify(request));
+	// console.log('Stram Mapping Request: '+JSON.stringify(request));
 	
 	try {		
 		var streamData = await streamCtrl.isAuthStream(request['stream_id']);
@@ -156,13 +157,13 @@ async function mapStream(req, res, next) {
 			    message: 'Mapping success'
 			});
 	} catch(err) {
-		console.error(err);
+		// console.error(err);
 	}
 }
 
 async function authLocation(req, res, next) {
 	let request = req.body;
-	console.log('Auth Location Mapping Request: '+JSON.stringify(request));
+	// console.log('Auth Location Mapping Request: '+JSON.stringify(request));
 	
 	try {	
 		var msg = "";
@@ -187,13 +188,13 @@ async function authLocation(req, res, next) {
 			    message: msg
 			});
 	} catch(err) {
-		console.error(err);
+		// console.error(err);
 	}
 }
 
 async function authStream(req, res, next) {
 	let request = req.body;
-	console.log('Auth Stram Mapping Request: '+JSON.stringify(request));
+	// console.log('Auth Stram Mapping Request: '+JSON.stringify(request));
 	
 	try {	
 		var msg = "";
@@ -218,7 +219,7 @@ async function authStream(req, res, next) {
 			    message: msg
 			});
 	} catch(err) {
-		console.error(err);
+		// console.error(err);
 	}
 }
 
@@ -235,7 +236,7 @@ async function getLocationsAsParent(req,res, next) {
 			    message: ''
 			});
 	} catch(err) {
-		console.error(err);
+		// console.error(err);
 	}
 }
 
@@ -252,7 +253,7 @@ async function getStreamsAsParent(req,res, next) {
 			    message: ''
 			});
 	} catch(err) {
-		console.error(err);
+		// console.error(err);
 	}
 }
 
@@ -291,7 +292,7 @@ async function getLocationRequest(req,res, next) {
 				});
 		}
 	} catch(err) {
-		console.error(err);
+		// console.error(err);
 	}
 }
 
@@ -330,14 +331,14 @@ async function getStreamRequest(req,res, next) {
 				});
 		}
 	} catch(err) {
-		console.error(err);
+		// console.error(err);
 	}
 }
 
 async function getAll(req,res, next) {
 	try {
 		let data = await userCtrl.fetchAllUser();
-		console.log('Return on Async/Await : '+JSON.stringify(data))
+		// console.log('Return on Async/Await : '+JSON.stringify(data))
 		res .status(200)
 			.json({
 				status: 'success',
@@ -345,12 +346,12 @@ async function getAll(req,res, next) {
 			    message: ''
 			});
 	} catch(err) {
-		console.error(err);
+		// console.error(err);
 	}
 }
 
 async function login(req, res, next) {
-	console.log('Login Request: '+JSON.stringify(req.body));
+	// console.log('Login Request: '+JSON.stringify(req.body));
 	var username = req.body.username;
 	var password = req.body.password;
 
@@ -387,7 +388,7 @@ async function login(req, res, next) {
 							location_id: locationData[i]['id']
 						};
 						let authULMData = await mappingCtrl.isAuthMapULM(authULM);
-						console.log(JSON.stringify(authULMData));
+						// console.log(JSON.stringify(authULMData));
 						locationData[i]['is_authorize'] = authULMData[0]['is_authorize'];
 						
 						let streamLocationData = await streamCtrl.fetchForLocationStream(locationData[i]['id']);
@@ -450,64 +451,21 @@ async function login(req, res, next) {
 				});
 		}	
 	} catch (err) {
-		console.error(err);
+		// console.error(err);
 		return next(err);
 	}
 }
 
-// async function login(req, res, next) {
-// 	console.log('Login Request: '+JSON.stringify(req.body));
-// 	var username = req.body.username;
-// 	var password = req.body.password;
-
-// 	try {
-// 		let userData = await userCtrl.fetchUser(username);
-// 		if (userData != undefined && userData.length>0) {
-// 			userData = userData[0];
-// 			var reqPassword = util.createPassword(userData.salt, password);
-
-// 			if (reqPassword == userData.password) {
-// 				delete userData['salt'];
-// 				delete userData['password']; 								
-
-// 				res .status(200)
-// 					.json({
-// 						status: 'success',
-// 						result: userData,
-// 		          		message: ''
-// 					});
-// 			} else {
-// 				res .status(401)
-// 					.json({
-// 						status: 'fail',
-// 						result: null,
-// 		          		message: 'Unable to login with provided credentials'
-// 					});
-// 			}
-// 		} else {
-// 			res .status(401)
-// 				.json({
-// 					status: 'fail',
-// 					result: null,
-// 		       		message: 'Unable to login with provided credentials'
-// 				});
-// 		}	
-// 	} catch (err) {
-// 		console.error(err);
-// 		return next(err);
-// 	}
-// }
-
 function updateProfile(req, res, next){
 	var user = req.body;
-	console.log('Update Profile Request: '+JSON.stringify(user));
+	// console.log('Update Profile Request: '+JSON.stringify(user));
 	userCtrl.updateUser(user)
 		.then(function() {
 			userCtrl.fetchUser(username)
 				.then(function(data) {
 					if (data != undefined && data.length>0) {
 						data = data[0];
-						console.log('Fetched data: '+JSON.stringify(data));
+						// console.log('Fetched data: '+JSON.stringify(data));
 						delete data['salt'];
 						delete data['password'];
 						res .status(200)
