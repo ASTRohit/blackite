@@ -5,10 +5,10 @@ function insert(user) {
 	user.salt = util.createSalt();
 	user.password = util.createPassword(user.salt, user.password);
 
-	var insertQuery='INSERT INTO user_master(name, email, mobile, parent_id, is_admin, salt, password, status) '+
+	var insertQuery='INSERT INTO user_master(name, email, mobile, salt, password) '+
 	'VALUES (?, ?, ?, ?, ?, ?, ?, ?);';
 	// console.log(insertQuery);
-	return db.query(insertQuery,[user.name, user.email, user.mobile, user.parent_id, user.is_admin, user.salt, user.password, user.status]);
+	return db.query(insertQuery,[user.name, user.email, user.mobile, user.salt, user.password]);
 }
 
 function fetch(username) {
