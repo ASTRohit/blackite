@@ -2,7 +2,6 @@ var ctrl = require('../controllers/appControllers');
 
 // Routes
 module.exports = function(app) {
-  // app.route('/auth/register').post(ctrl.authRegister);
   app.route('/auth/register/user').post(ctrl.authRegisterUser);
   app.route('/user/new/location').post(ctrl.newLocation);
   app.route('/user/new/stream').post(ctrl.newStream);

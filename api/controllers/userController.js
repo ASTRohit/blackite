@@ -6,7 +6,7 @@ function insert(user) {
 	user.password = util.createPassword(user.salt, user.password);
 
 	var insertQuery='INSERT INTO user_master(name, email, mobile, salt, password) '+
-	'VALUES (?, ?, ?, ?, ?, ?, ?, ?);';
+	'VALUES (?, ?, ?, ?, ?);';
 	// console.log(insertQuery);
 	return db.query(insertQuery,[user.name, user.email, user.mobile, user.salt, user.password]);
 }
