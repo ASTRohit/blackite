@@ -12,17 +12,37 @@ async function registerUser(req, res, next) {
 	
 	try {		
 		let user = request;		
-		let data = await userCtrl.insertUser(user);		
-		// console.log('Return on Async/Await : '+JSON.stringify(data));	
-		user['id'] = parseInt(data['insertId']);
-		delete user['salt'];
-		delete user['password'];
-		res .status(200)
-			.json({
-				status: 'success',
-				result: user,
-			    message: ''
-			});
+		let existingUser = await userCtrl.fetchUser(user['email']);
+		if (existingUser!=undefined && existingUser.length>0) {
+			res .status(200)
+				.json({
+					status: 'fail',
+					result: null,
+				    message: 'Email already exist'
+				});
+		} else {
+			existingUser = await userCtrl.fetchUser(user['mobile']);
+			if (existingUser!=undefined && existingUser.length>0) {
+				res .status(200)
+					.json({
+						status: 'fail',
+						result: null,
+					    message: 'Mobile already exist'
+					});
+			} else {
+				let data = await userCtrl.insertUser(user);		
+				// console.log('Return on Async/Await : '+JSON.stringify(data));	
+				user['id'] = parseInt(data['insertId']);
+				delete user['salt'];
+				delete user['password'];
+				res .status(200)
+					.json({
+						status: 'success',
+						result: user,
+					    message: ''
+					});
+			}
+		}		
 	} catch(err) {
 		// console.error(err);
 	}
